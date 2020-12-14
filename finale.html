@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>FINALE</title>
+  </head>
+  <body onload="popola()">
+    <p>Inserisci nome e premi il pulsante<br>
+    <strong>Non registratevi con nomi uguali</strong>
+    </p>
+    
+    
+    <form action="" method="POST">
+      <label>Nome:</label><br>
+      <input type="text" id="name" name="nome"><br>
+      <label>Codice:</label><br>
+      <input type="text" id="code" name="codice"><br><br>
+      <input type="button" onclick="clickCounter()" value="controlla!">
+    </form>
+    <p><strong>CLASSIFICA:</strong></p>
+    <ul>
+      <li id="primo">
+
+        
+      </li>
+
+      <li id="secondo">
+
+      </li>
+
+      <li id="terzo">
+
+      </li> 
+      
+      <li id="quarto">
+
+      </li>
+      <li id="quinto">
+
+      </li>
+     </ul>
+
+  </body>
+  <script>
+    
+      var primo = document.getElementById("primo");
+      var secondo = document.getElementById("secondo");
+      var terzo = document.getElementById("terzo");
+      var quarto = document.getElementById("quarto");
+      var quinto = document.getElementById("quinto");
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      var hour = today.getHours();
+      var minutes = today.getMinutes();
+      today = dd + '/' + mm + '/' + yyyy + " alle " + hour +":" + minutes;
+      
+    function clickCounter() {
+      var nome = document.getElementById("name");
+      var codice = document.getElementById("code"); 
+      mystorage = window.localStorage;
+      var key = "SWAGMARIADEFI";
+
+
+      if(codice.value == key){
+    
+        
+        if(localStorage.getItem("primo") == null){
+        localStorage.setItem("primo", nome.value);
+        localStorage.setItem("primo_date", today);
+        primo.innerHTML = nome.value + " il" + today;
+
+        
+      
+      
+    } else if(localStorage.getItem("secondo") == null){
+      
+        localStorage.setItem("secondo", nome.value);
+        localStorage.setItem("secondo_date", today);
+        secondo.innerHTML = nome.value + " il" + today;
+        
+      }  else if(localStorage.getItem("terzo") == null){
+        
+          localStorage.setItem("terzo", nome.value);
+          localStorage.setItem("terzo_date", today);
+          terzo.innerHTML = nome.value + " il" + today;
+        
+      }
+     else if(localStorage.getItem("quarto") == null){
+      
+        localStorage.setItem("quarto", nome.value);
+        localStorage.setItem("quartp_date", today);
+        quarto.innerHTML = nome.value + " il" + today;
+      
+      } else if(localStorage.getItem("quinto") == null){
+        
+        localStorage.setItem("quinto", nome.value);
+        localStorage.setItem("quinto_date", today);
+        quinto.innerHTML = nome.value + " il" + today;
+        
+    
+      } else{
+        window.alert("Sei arrivato tardi.")
+      }
+      
+    
+    } else{
+      window.alert("Codice sbagliato");
+    }
+    }
+    function popola(){
+      primo.innerHTML = localStorage.getItem("primo") + " il " + localStorage.getItem("primo_date");
+      secondo.innerHTML = localStorage.getItem("secondo") +" il " + localStorage.getItem("secondo_date");
+      terzo.innerHTML = localStorage.getItem("terzo") + " il " + localStorage.getItem("terzo_date");
+      quarto.innerHTML = localStorage.getItem("quarto") +" il " + localStorage.getItem("quarto_date");
+      quinto.innerHTML = localStorage.getItem("quinto")+ " il " + localStorage.getItem("quinto_date");
+      
+
+    }
+    </script>
+</html>
